@@ -4,6 +4,8 @@
 
 This project uses an Altera DE1 FPGA development board and a VGA monitor to implement a Flappy Bird clone. View a demo at https://www.youtube.com/watch?v=DOztI2MWZZ0.
 
+[![Flappy Bird Demo](https://img.youtube.com/vi/DOztI2MWZZ0/0.jpg)](https://www.youtube.com/watch?v=DOztI2MWZZ0)
+
 Features:
 
 * "randomly" selected pipe gaps (using a nine-bit LFSR)
