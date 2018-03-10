@@ -1,0 +1,530 @@
+\documentclass[10pt]{article}
+
+\usepackage[american]{circuitikz}
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage[a2paper, margin=0.375in]{geometry}
+\usepackage{pdflscape}
+
+\pagenumbering{gobble}
+\raggedright
+\setlength{\parskip}{1em}
+
+\begin{document}
+\begin{landscape}
+  \begin{figure}[ht]
+    \centering
+    \begin{circuitikz}
+      \draw
+      % inputs
+      (0, 40) node[] (clock50) {} -- ++(1, 0)
+      (clock50) node[left] {\scriptsize CLOCK\_50}
+
+      (0, 39) node[] (key) {} -- ++(1, 0)
+      (key) node[left] {\scriptsize KEY}
+      (key) ++(0.5, 0) node[] {/}
+      (key) ++(0.5, 0) node[above left] {\scriptsize 4}
+
+      (0, 41) node[] (sw) {} -- ++(1, 0)
+      (sw) node[left] {\scriptsize SW}
+      (sw) ++(0.5, 0) node[] {/}
+      (sw) ++(0.5, 0) node[above left] {\scriptsize 10}
+
+      % DE1_SoC
+      (2, 14) rectangle ++(41, 35)
+
+      % ClockDivider
+      (4, 34.5) node[] (ClockDivider) {}
+      (ClockDivider) rectangle ++(3, 2)
+      (ClockDivider) ++(1.5, 0) node[below] {\small ClockDivider}
+      (ClockDivider) ++(0, 1.25) node[right] {\scriptsize clock}
+      (ClockDivider) ++(0, 0.75) node[right] {\scriptsize reset}
+      (ClockDivider) ++(3, 1) node[left] {\scriptsize dividedClocks}
+
+      % key0Dff0
+      (4, 38.75) node[] (dff0) {}
+      (dff0) rectangle ++(1, 0.5)
+      (dff0) ++(0.375, 0) -- ++(0.125, 0.25) -- ++(0.125, -0.25)
+      (dff0) ++(0, 0.25) node[right] {\scriptsize D}
+      (dff0) ++(1, 0.25) node[left] {\scriptsize Q}
+
+      % key0Dff1
+      (6, 38.75) node[] (dff1) {}
+      (dff1) rectangle ++(1, 0.5)
+      (dff1) ++(0.375, 0) -- ++(0.125, 0.25) -- ++(0.125, -0.25)
+      (dff1) ++(0, 0.25) node[right] {\scriptsize D}
+      (dff1) ++(1, 0.25) node[left] {\scriptsize Q}
+
+      % Bird
+      (10, 38.5) node[] (Bird) {}
+      (Bird) rectangle ++(2, 2)
+      (Bird) ++(1, 0) node[below] {\small Bird}
+      (Bird) ++(0, 1.5) node[right] {\scriptsize clock}
+      (Bird) ++(0, 1) node[right] {\scriptsize reset}
+      (Bird) ++(0, 0.5) node[right] {\scriptsize fly}
+      (Bird) ++(2, 1) node[left] {\scriptsize height}
+
+      % Obstacle0
+      (10, 33.5) node[] (Obstacle0) {}
+      (Obstacle0) rectangle ++(4, 3)
+      (Obstacle0) ++(2, 0) node[below] {\small Obstacle 0}
+      (Obstacle0) ++(0, 2.5) node[right] {\scriptsize clock}
+      (Obstacle0) ++(0, 2) node[right] {\scriptsize reset}
+      (Obstacle0) ++(0, 1.5) node[right] {\scriptsize initial\_gap\_distance}
+      (Obstacle0) ++(0, 1) node[right] {\scriptsize initial\_height}
+      (Obstacle0) ++(0, 0.5) node[right] {\scriptsize initial\_gap\_height}
+      (Obstacle0) ++(4, 2) node[left] {\scriptsize distance}
+      (Obstacle0) ++(4, 1.5) node[left] {\scriptsize height}
+      (Obstacle0) ++(4, 1) node[left] {\scriptsize gap\_height}
+
+      % Obstacle1
+      (10, 29) node[] (Obstacle1) {}
+      (Obstacle1) rectangle ++(4, 3)
+      (Obstacle1) ++(2, 0) node[below] {\small Obstacle 1}
+      (Obstacle1) ++(0, 2.5) node[right] {\scriptsize clock}
+      (Obstacle1) ++(0, 2) node[right] {\scriptsize reset}
+      (Obstacle1) ++(0, 1.5) node[right] {\scriptsize initial\_gap\_distance}
+      (Obstacle1) ++(0, 1) node[right] {\scriptsize initial\_height}
+      (Obstacle1) ++(0, 0.5) node[right] {\scriptsize initial\_gap\_height}
+      (Obstacle1) ++(4, 2) node[left] {\scriptsize distance}
+      (Obstacle1) ++(4, 1.5) node[left] {\scriptsize height}
+      (Obstacle1) ++(4, 1) node[left] {\scriptsize gap\_height}
+
+      % Obstacle2
+      (10, 24.5) node[] (Obstacle2) {}
+      (Obstacle2) rectangle ++(4, 3)
+      (Obstacle2) ++(2, 0) node[below] {\small Obstacle 2}
+      (Obstacle2) ++(0, 2.5) node[right] {\scriptsize clock}
+      (Obstacle2) ++(0, 2) node[right] {\scriptsize reset}
+      (Obstacle2) ++(0, 1.5) node[right] {\scriptsize initial\_gap\_distance}
+      (Obstacle2) ++(0, 1) node[right] {\scriptsize initial\_height}
+      (Obstacle2) ++(0, 0.5) node[right] {\scriptsize initial\_gap\_height}
+      (Obstacle2) ++(4, 2) node[left] {\scriptsize distance}
+      (Obstacle2) ++(4, 1.5) node[left] {\scriptsize height}
+      (Obstacle2) ++(4, 1) node[left] {\scriptsize gap\_height}
+
+      % VideoBird
+      (16, 38.25) node[] (VideoBird) {}
+      (VideoBird) rectangle ++(2.5, 2.5)
+      (VideoBird) ++(1.25, 0) node[below] {\small VideoBird}
+      (VideoBird) ++(0, 1.25) node[right] {\scriptsize bird\_height}
+      (VideoBird) ++(2.5, 2) node[left] {\scriptsize min\_x}
+      (VideoBird) ++(2.5, 1.5) node[left] {\scriptsize max\_x}
+      (VideoBird) ++(2.5, 1) node[left] {\scriptsize min\_y}
+      (VideoBird) ++(2.5, 0.5) node[left] {\scriptsize max\_y}
+
+      % VideoObstacle0
+      (16, 33) node[] (VideoObstacle0) {}
+      (VideoObstacle0) rectangle ++(3.5, 3.5)
+      (VideoObstacle0) ++(1.75, 0) node[below] {\small VideoObstacle0}
+      (VideoObstacle0) ++(0, 2.5) node[right] {\scriptsize distance}
+      (VideoObstacle0) ++(0, 2) node[right] {\scriptsize height}
+      (VideoObstacle0) ++(0, 1.5) node[right] {\scriptsize gap\_height}
+      (VideoObstacle0) ++(3.5, 3) node[left] {\scriptsize x\_min}
+      (VideoObstacle0) ++(3.5, 2.5) node[left] {\scriptsize x\_max}
+      (VideoObstacle0) ++(3.5, 2) node[left] {\scriptsize bottom\_y\_min}
+      (VideoObstacle0) ++(3.5, 1.5) node[left] {\scriptsize bottom\_y\_max}
+      (VideoObstacle0) ++(3.5, 1) node[left] {\scriptsize top\_y\_min}
+      (VideoObstacle0) ++(3.5, 0.5) node[left] {\scriptsize top\_y\_max}
+
+      % VideoObstacle1
+      (16, 28.5) node[] (VideoObstacle1) {}
+      (VideoObstacle1) rectangle ++(3.5, 3.5)
+      (VideoObstacle1) ++(1.75, 0) node[below] {\small VideoObstacle1}
+      (VideoObstacle1) ++(0, 2.5) node[right] {\scriptsize distance}
+      (VideoObstacle1) ++(0, 2) node[right] {\scriptsize height}
+      (VideoObstacle1) ++(0, 1.5) node[right] {\scriptsize gap\_height}
+      (VideoObstacle1) ++(3.5, 3) node[left] {\scriptsize x\_min}
+      (VideoObstacle1) ++(3.5, 2.5) node[left] {\scriptsize x\_max}
+      (VideoObstacle1) ++(3.5, 2) node[left] {\scriptsize bottom\_y\_min}
+      (VideoObstacle1) ++(3.5, 1.5) node[left] {\scriptsize bottom\_y\_max}
+      (VideoObstacle1) ++(3.5, 1) node[left] {\scriptsize top\_y\_min}
+      (VideoObstacle1) ++(3.5, 0.5) node[left] {\scriptsize top\_y\_max}
+
+      % VideoObstacle2
+      (16, 24) node[] (VideoObstacle2) {}
+      (VideoObstacle2) rectangle ++(3.5, 3.5)
+      (VideoObstacle2) ++(1.75, 0) node[below] {\small VideoObstacle2}
+      (VideoObstacle2) ++(0, 2.5) node[right] {\scriptsize distance}
+      (VideoObstacle2) ++(0, 2) node[right] {\scriptsize height}
+      (VideoObstacle2) ++(0, 1.5) node[right] {\scriptsize gap\_height}
+      (VideoObstacle2) ++(3.5, 3) node[left] {\scriptsize x\_min}
+      (VideoObstacle2) ++(3.5, 2.5) node[left] {\scriptsize x\_max}
+      (VideoObstacle2) ++(3.5, 2) node[left] {\scriptsize bottom\_y\_min}
+      (VideoObstacle2) ++(3.5, 1.5) node[left] {\scriptsize bottom\_y\_max}
+      (VideoObstacle2) ++(3.5, 1) node[left] {\scriptsize top\_y\_min}
+      (VideoObstacle2) ++(3.5, 0.5) node[left] {\scriptsize top\_y\_max}
+
+      % CollisionDetector
+      (25.5, 17.25) node[] (CollisionDetector) {}
+      (CollisionDetector) rectangle ++(4, 11.5)
+      (CollisionDetector) ++(2, 0) node[below] {\small CollisionDetector}
+      (CollisionDetector) ++(0, 11) node[right] {\scriptsize bird\_x\_min}
+      (CollisionDetector) ++(0, 10.5) node[right] {\scriptsize bird\_x\_max}
+      (CollisionDetector) ++(0, 10) node[right] {\scriptsize bird\_y\_min}
+      (CollisionDetector) ++(0, 9.5) node[right] {\scriptsize bird\_y\_max}
+      (CollisionDetector) ++(0, 9) node[right] {\scriptsize obs0\_x\_min}
+      (CollisionDetector) ++(0, 8.5) node[right] {\scriptsize obs0\_x\_max}
+      (CollisionDetector) ++(0, 8) node[right] {\scriptsize obs0\_bottom\_y\_min}
+      (CollisionDetector) ++(0, 7.5) node[right] {\scriptsize obs0\_bottom\_y\_max}
+      (CollisionDetector) ++(0, 7) node[right] {\scriptsize obs0\_top\_y\_min}
+      (CollisionDetector) ++(0, 6.5) node[right] {\scriptsize obs0\_top\_y\_max}
+      (CollisionDetector) ++(0, 6) node[right] {\scriptsize obs1\_x\_min}
+      (CollisionDetector) ++(0, 5.5) node[right] {\scriptsize obs1\_x\_max}
+      (CollisionDetector) ++(0, 5) node[right] {\scriptsize obs1\_bottom\_y\_min}
+      (CollisionDetector) ++(0, 4.5) node[right] {\scriptsize obs1\_bottom\_y\_max}
+      (CollisionDetector) ++(0, 4) node[right] {\scriptsize obs1\_top\_y\_min}
+      (CollisionDetector) ++(0, 3.5) node[right] {\scriptsize obs1\_top\_y\_max}
+      (CollisionDetector) ++(0, 3) node[right] {\scriptsize obs2\_x\_min}
+      (CollisionDetector) ++(0, 2.5) node[right] {\scriptsize obs2\_x\_max}
+      (CollisionDetector) ++(0, 2) node[right] {\scriptsize obs2\_bottom\_y\_min}
+      (CollisionDetector) ++(0, 1.5) node[right] {\scriptsize obs2\_bottom\_y\_max}
+      (CollisionDetector) ++(0, 1) node[right] {\scriptsize obs2\_top\_y\_min}
+      (CollisionDetector) ++(0, 0.5) node[right] {\scriptsize obs2\_top\_y\_max}
+      (CollisionDetector) ++(4, 4.25) node[left] {\scriptsize collision}
+
+      % VideoGame
+      (25.5, 31.75) node[] (VideoGame) {}
+      (VideoGame) rectangle ++(4, 13)
+      (VideoGame) ++(2, 0) node[below] {\small VideoGame}
+      (VideoGame) ++(0, 12.5) node[right] {\scriptsize x}
+      (VideoGame) ++(0, 12) node[right] {\scriptsize y}
+      (VideoGame) ++(0, 11.5) node[right] {\scriptsize bird\_x\_min}
+      (VideoGame) ++(0, 11) node[right] {\scriptsize bird\_x\_max}
+      (VideoGame) ++(0, 10.5) node[right] {\scriptsize bird\_y\_min}
+      (VideoGame) ++(0, 10) node[right] {\scriptsize bird\_y\_max}
+      (VideoGame) ++(0, 9.5) node[right] {\scriptsize obs0\_x\_min}
+      (VideoGame) ++(0, 9) node[right] {\scriptsize obs0\_x\_max}
+      (VideoGame) ++(0, 8.5) node[right] {\scriptsize obs0\_bottom\_y\_min}
+      (VideoGame) ++(0, 8) node[right] {\scriptsize obs0\_bottom\_y\_max}
+      (VideoGame) ++(0, 7.5) node[right] {\scriptsize obs0\_top\_y\_min}
+      (VideoGame) ++(0, 7) node[right] {\scriptsize obs0\_top\_y\_max}
+      (VideoGame) ++(0, 6.5) node[right] {\scriptsize obs1\_x\_min}
+      (VideoGame) ++(0, 6) node[right] {\scriptsize obs1\_x\_max}
+      (VideoGame) ++(0, 5.5) node[right] {\scriptsize obs1\_bottom\_y\_min}
+      (VideoGame) ++(0, 5) node[right] {\scriptsize obs1\_bottom\_y\_max}
+      (VideoGame) ++(0, 4.5) node[right] {\scriptsize obs1\_top\_y\_min}
+      (VideoGame) ++(0, 4) node[right] {\scriptsize obs1\_top\_y\_max}
+      (VideoGame) ++(0, 3.5) node[right] {\scriptsize obs2\_x\_min}
+      (VideoGame) ++(0, 3) node[right] {\scriptsize obs2\_x\_max}
+      (VideoGame) ++(0, 2.5) node[right] {\scriptsize obs2\_bottom\_y\_min}
+      (VideoGame) ++(0, 2) node[right] {\scriptsize obs2\_bottom\_y\_max}
+      (VideoGame) ++(0, 1.5) node[right] {\scriptsize obs2\_top\_y\_min}
+      (VideoGame) ++(0, 1) node[right] {\scriptsize obs2\_top\_y\_max}
+      (VideoGame) ++(0, 0.5) node[right] {\scriptsize game\_over}
+      (VideoGame) ++(4, 7.25) node[left] {\scriptsize r}
+      (VideoGame) ++(4, 6.75) node[left] {\scriptsize g}
+      (VideoGame) ++(4, 6.25) node[left] {\scriptsize b}
+
+      % VideoDriver
+      (33.5, 35) node[] (VideoDriver) {}
+      (VideoDriver) rectangle ++(3, 5.5)
+      (VideoDriver) ++(1.5, 0) node[below] {\small VideoDriver}
+      (VideoDriver) ++(0, 5) node[right] {\scriptsize CLOCK\_50}
+      (VideoDriver) ++(0, 4.5) node[right] {\scriptsize reset}
+      (VideoDriver) ++(0, 4) node[right] {\scriptsize r}
+      (VideoDriver) ++(0, 3.5) node[right] {\scriptsize g}
+      (VideoDriver) ++(0, 3) node[right] {\scriptsize b}
+      (VideoDriver) ++(3, 5) node[left] {\scriptsize x}
+      (VideoDriver) ++(3, 4.5) node[left] {\scriptsize y}
+      (VideoDriver) ++(3, 4) node[left] {\scriptsize VGA\_R}
+      (VideoDriver) ++(3, 3.5) node[left] {\scriptsize VGA\_G}
+      (VideoDriver) ++(3, 3) node[left] {\scriptsize VGA\_B}
+      (VideoDriver) ++(3, 2.5) node[left] {\scriptsize VGA\_BLANK\_N}
+      (VideoDriver) ++(3, 2) node[left] {\scriptsize VGA\_CLK}
+      (VideoDriver) ++(3, 1.5) node[left] {\scriptsize VGA\_HS}
+      (VideoDriver) ++(3, 1) node[left] {\scriptsize VGA\_SYNC\_N}
+      (VideoDriver) ++(3, 0.5) node[left] {\scriptsize VGA\_VS}
+
+      % GameStateTracker
+      (33.5, 31.75) node[] (GameStateTracker) {}
+      (GameStateTracker) rectangle ++(3, 2)
+      (GameStateTracker) ++(1.5, 0) node[below] {\small GameStateTracker}
+      (GameStateTracker) ++(3, 1) node[left] {\scriptsize game\_over}
+      (GameStateTracker) ++(0, 0.5) node[right] {\scriptsize collision}
+      (GameStateTracker) ++(0, 1) node[right] {\scriptsize reset}
+      (GameStateTracker) ++(0, 1.5) node[right] {\scriptsize clock}
+
+      % ScoreCounter
+      (33.5, 27) node[] (ScoreCounter) {}
+      (ScoreCounter) rectangle ++(3, 3.5)
+      (ScoreCounter) ++(1.5, 0) node[below] {\small ScoreCounter}
+      (ScoreCounter) ++(0, 0.5) node[right] {\scriptsize game\_over}
+      (ScoreCounter) ++(0, 1) node[right] {\scriptsize obs2\_x\_max}
+      (ScoreCounter) ++(0, 1.5) node[right] {\scriptsize obs1\_x\_max}
+      (ScoreCounter) ++(0, 2) node[right] {\scriptsize obs0\_x\_max}
+      (ScoreCounter) ++(0, 2.5) node[right] {\scriptsize reset}
+      (ScoreCounter) ++(0, 3) node[right] {\scriptsize clock}
+      (ScoreCounter) ++(3, 1.75) node[left] {\scriptsize score}
+
+      % OneDigitDisplay0
+      (40, 24) node[] (odd0) {}
+      (odd0) rectangle ++(2, 1)
+      (odd0) ++(1, 0) node[below] {\small OneDigitDisplay}
+      (odd0) ++(0, 0.5) node[right] {\scriptsize value}
+      (odd0) ++(2, 0.5) node[left] {\scriptsize hex}
+
+      % OneDigitDisplay1
+      (40, 27) node[] (odd1) {}
+      (odd1) rectangle ++(2, 1)
+      (odd1) ++(1, 0) node[below] {\small OneDigitDisplay}
+      (odd1) ++(0, 0.5) node[right] {\scriptsize value}
+      (odd1) ++(2, 0.5) node[left] {\scriptsize hex}
+
+      % OneDigitDisplay2
+      (40, 30) node[] (odd2) {}
+      (odd2) rectangle ++(2, 1)
+      (odd2) ++(1, 0) node[below] {\small OneDigitDisplay}
+      (odd2) ++(0, 0.5) node[right] {\scriptsize value}
+      (odd2) ++(2, 0.5) node[left] {\scriptsize hex}
+
+      % OneDigitDisplay3
+      (40, 33) node[] (odd3) {}
+      (odd3) rectangle ++(2, 1)
+      (odd3) ++(1, 0) node[below] {\small OneDigitDisplay}
+      (odd3) ++(0, 0.5) node[right] {\scriptsize value}
+      (odd3) ++(2, 0.5) node[left] {\scriptsize hex}
+
+      % wires
+      (Bird) ++(2, 1) -- ++(4, 0) ++(1, 0)
+      (Bird) ++(2.5, 1) node[] {/}
+      (Bird) ++(2.5, 1) node[above left] {\scriptsize 9}
+
+      (Obstacle0) ++(4, 2) -- ++(2, 0)
+      (Obstacle0) ++(4, 1.5) -- ++(2, 0)
+      (Obstacle0) ++(4, 1) -- ++(2, 0)
+      (Obstacle0) ++(4.5, 1) node[] {/}
+      (Obstacle0) ++(4.5, 1) node[above left] {\scriptsize 9}
+      (Obstacle0) ++(4.5, 1.5) node[] {/}
+      (Obstacle0) ++(4.5, 1.5) node[above left] {\scriptsize 9}
+      (Obstacle0) ++(4.5, 2) node[] {/}
+      (Obstacle0) ++(4.5, 2) node[above left] {\scriptsize 10}
+      (Obstacle1) ++(4, 2) -- ++(2, 0)
+      (Obstacle1) ++(4, 1.5) -- ++(2, 0)
+      (Obstacle1) ++(4, 1) -- ++(2, 0)
+      (Obstacle1) ++(4.5, 1) node[] {/}
+      (Obstacle1) ++(4.5, 1) node[above left] {\scriptsize 9}
+      (Obstacle1) ++(4.5, 1.5) node[] {/}
+      (Obstacle1) ++(4.5, 1.5) node[above left] {\scriptsize 9}
+      (Obstacle1) ++(4.5, 2) node[] {/}
+      (Obstacle1) ++(4.5, 2) node[above left] {\scriptsize 10}
+      (Obstacle2) ++(4, 2) -- ++(2, 0)
+      (Obstacle2) ++(4, 1.5) -- ++(2, 0)
+      (Obstacle2) ++(4, 1) -- ++(2, 0)
+      (Obstacle2) ++(4.5, 1) node[] {/}
+      (Obstacle2) ++(4.5, 1) node[above left] {\scriptsize 9}
+      (Obstacle2) ++(4.5, 1.5) node[] {/}
+      (Obstacle2) ++(4.5, 1.5) node[above left] {\scriptsize 9}
+      (Obstacle2) ++(4.5, 2) node[] {/}
+      (Obstacle2) ++(4.5, 2) node[above left] {\scriptsize 10}
+
+      (VideoBird) ++(2.5, 2) -- ++(3.875, 0) circle (0.03125) -- ++(0, -12) -- ++(3.125, 0)
+      (VideoBird) ++(2.5, 1.5) -- ++(3.75, 0) circle (0.03125) -- ++(0, -12) -- ++(3.25, 0)
+      (VideoBird) ++(2.5, 1) -- ++(3.625, 0) circle (0.03125) -- ++(0, -12) -- ++(3.375, 0)
+      (VideoBird) ++(2.5, 0.5) -- ++(3.5, 0) circle (0.03125) -- ++(0, -12) -- ++(3.5, 0)
+      (VideoBird) ++(2.5, 2) ++(3.875, 0) -- ++(0, 3) -- ++(3.125, 0)
+      (VideoBird) ++(2.5, 1.5) ++(3.75, 0) -- ++(0, 3) -- ++(3.25, 0)
+      (VideoBird) ++(2.5, 1) ++(3.625, 0) -- ++(0, 3) -- ++(3.375, 0)
+      (VideoBird) ++(2.5, 0.5) ++(3.5, 0) -- ++(0, 3) -- ++(3.5, 0)
+      (VideoBird) ++(3, 2) node[] {/}
+      (VideoBird) ++(3, 2) node[above left] {\scriptsize 10}
+      (VideoBird) ++(3, 1.5) node[] {/}
+      (VideoBird) ++(3, 1.5) node[above left] {\scriptsize 10}
+      (VideoBird) ++(3, 1) node[] {/}
+      (VideoBird) ++(3, 1) node[above left] {\scriptsize 9}
+      (VideoBird) ++(3, 0.5) node[] {/}
+      (VideoBird) ++(3, 0.5) node[above left] {\scriptsize 9}
+
+      (VideoObstacle0) ++(3.5, 3) -- ++(3.75, 0) circle (0.03125) -- ++(0, -9.75) -- ++(2.25, 0)
+      (VideoObstacle0) ++(3.5, 2.5) -- ++(3.625, 0) circle (0.03125) -- ++(0, -9.75) -- ++(2.375, 0)
+      (VideoObstacle0) ++(3.5, 2) -- ++(3.5, 0) circle (0.03125) -- ++(0, -9.75) -- ++(2.5, 0)
+      (VideoObstacle0) ++(3.5, 1.5) -- ++(3.375, 0) circle (0.03125) -- ++(0, -9.75) -- ++(2.625, 0)
+      (VideoObstacle0) ++(3.5, 1) -- ++(3.25, 0) circle (0.03125) -- ++(0, -9.75) -- ++(2.75, 0)
+      (VideoObstacle0) ++(3.5, 0.5) -- ++(3.125, 0) circle (0.03125) -- ++(0, -9.75) -- ++(2.875, 0)
+      (VideoObstacle0) ++(3.125, 3) ++(4.125, 0) -- ++(0, 5.25) -- ++(2.25, 0)
+      (VideoObstacle0) ++(3.125, 2.5) ++(4, 0) -- ++(0, 5.25) -- ++(2.375, 0)
+      (VideoObstacle0) ++(3.125, 2) ++(3.875, 0) -- ++(0, 5.25) -- ++(2.5, 0)
+      (VideoObstacle0) ++(3.125, 1.5) ++(3.75, 0) -- ++(0, 5.25) -- ++(2.625, 0)
+      (VideoObstacle0) ++(3.125, 1) ++(3.625, 0) -- ++(0, 5.25) -- ++(2.75, 0)
+      (VideoObstacle0) ++(3.125, 0.5) ++(3.5, 0) -- ++(0, 5.25) -- ++(2.875, 0)
+      (VideoObstacle0) ++(5, 3) node[] {/}
+      (VideoObstacle0) ++(5, 3) node[above left] {\scriptsize 10}
+      (VideoObstacle0) ++(5, 2.5) node[] {/}
+      (VideoObstacle0) ++(5, 2.5) node[above left] {\scriptsize 10}
+      (VideoObstacle0) ++(5, 2) node[] {/}
+      (VideoObstacle0) ++(5, 2) node[above left] {\scriptsize 9}
+      (VideoObstacle0) ++(5, 1.5) node[] {/}
+      (VideoObstacle0) ++(5, 1.5) node[above left] {\scriptsize 9}
+      (VideoObstacle0) ++(5, 1) node[] {/}
+      (VideoObstacle0) ++(5, 1) node[above left] {\scriptsize 9}
+      (VideoObstacle0) ++(5, 0.5) node[] {/}
+      (VideoObstacle0) ++(5, 0.5) node[above left] {\scriptsize 9}
+
+      (VideoObstacle1) ++(3.5, 3) -- ++(4.625, 0) circle (0.03125) -- ++(0, -8.25) -- ++(1.375, 0)
+      (VideoObstacle1) ++(3.5, 2.5) -- ++(4.5, 0) circle (0.03125) -- ++(0, -8.25) -- ++(1.5, 0)
+      (VideoObstacle1) ++(3.5, 2) -- ++(4.375, 0) circle (0.03125) -- ++(0, -8.25) -- ++(1.625, 0)
+      (VideoObstacle1) ++(3.5, 1.5) -- ++(4.25, 0) circle (0.03125) -- ++(0, -8.25) -- ++(1.75, 0)
+      (VideoObstacle1) ++(3.5, 1) -- ++(4.125, 0) circle (0.03125) -- ++(0, -8.25) -- ++(1.875, 0)
+      (VideoObstacle1) ++(3.5, 0.5) -- ++(4, 0) circle (0.03125) -- ++(0, -8.25) -- ++(2, 0)
+      (VideoObstacle1) ++(3.5, 3) ++(4.625, 0) -- ++(0, 6.75) -- ++(1.375, 0)
+      (VideoObstacle1) ++(3.5, 2.5) ++(4.5, 0) -- ++(0, 6.75) -- ++(1.5, 0)
+      (VideoObstacle1) ++(3.5, 2) ++(4.375, 0) -- ++(0, 6.75) -- ++(1.625, 0)
+      (VideoObstacle1) ++(3.5, 1.5) ++(4.25, 0) -- ++(0, 6.75) -- ++(1.75, 0)
+      (VideoObstacle1) ++(3.5, 1) ++(4.125, 0) -- ++(0, 6.75) -- ++(1.875, 0)
+      (VideoObstacle1) ++(3.5, 0.5) ++(4, 0) -- ++(0, 6.75) -- ++(2, 0)
+      (VideoObstacle1) ++(3.5, 0.5) ++(4, 0) -- ++(0, 6.75) -- ++(2, 0)
+      (VideoObstacle1) ++(5, 3) node[] {/}
+      (VideoObstacle1) ++(5, 3) node[above left] {\scriptsize 10}
+      (VideoObstacle1) ++(5, 2.5) node[] {/}
+      (VideoObstacle1) ++(5, 2.5) node[above left] {\scriptsize 10}
+      (VideoObstacle1) ++(5, 2) node[] {/}
+      (VideoObstacle1) ++(5, 2) node[above left] {\scriptsize 9}
+      (VideoObstacle1) ++(5, 1.5) node[] {/}
+      (VideoObstacle1) ++(5, 1.5) node[above left] {\scriptsize 9}
+      (VideoObstacle1) ++(5, 1) node[] {/}
+      (VideoObstacle1) ++(5, 1) node[above left] {\scriptsize 9}
+      (VideoObstacle1) ++(5, 0.5) node[] {/}
+      (VideoObstacle1) ++(5, 0.5) node[above left] {\scriptsize 9}
+
+
+      (VideoObstacle2) ++(3.5, 3) -- ++(5.5, 0) circle (0.03125) -- ++(0, -6.75) -- ++(0.5, 0)
+      (VideoObstacle2) ++(3.5, 2.5) -- ++(5.375, 0) circle (0.03125) -- ++(0, -6.75) -- ++(0.625, 0)
+      (VideoObstacle2) ++(3.5, 2) -- ++(5.25, 0) circle (0.03125) -- ++(0, -6.75) -- ++(0.75, 0)
+      (VideoObstacle2) ++(3.5, 1.5) -- ++(5.125, 0) circle (0.03125) -- ++(0, -6.75) -- ++(0.875, 0)
+      (VideoObstacle2) ++(3.5, 1) -- ++(5, 0) circle (0.03125) -- ++(0, -6.75) -- ++(1, 0)
+      (VideoObstacle2) ++(3.5, 0.5) -- ++(4.875, 0) circle (0.03125) -- ++(0, -6.75) -- ++(1.125, 0)
+      (VideoObstacle2) ++(3.5, 3) ++(5.5, 0) -- ++(0, 8.25) -- ++(0.5, 0)
+      (VideoObstacle2) ++(3.5, 2.5) ++(5.375, 0) -- ++(0, 8.25) -- ++(0.625, 0)
+      (VideoObstacle2) ++(3.5, 2) ++(5.25, 0) -- ++(0, 8.25) -- ++(0.75, 0)
+      (VideoObstacle2) ++(3.5, 1.5) ++(5.125, 0) -- ++(0, 8.25) -- ++(0.875, 0)
+      (VideoObstacle2) ++(3.5, 1) ++(5, 0) -- ++(0, 8.25) -- ++(1, 0)
+      (VideoObstacle2) ++(3.5, 0.5) ++(4.875, 0) -- ++(0, 8.25) -- ++(1.125, 0)
+      (VideoObstacle2) ++(5, 3) node[] {/}
+      (VideoObstacle2) ++(5, 3) node[above left] {\scriptsize 10}
+      (VideoObstacle2) ++(5, 2.5) node[] {/}
+      (VideoObstacle2) ++(5, 2.5) node[above left] {\scriptsize 10}
+      (VideoObstacle2) ++(5, 2) node[] {/}
+      (VideoObstacle2) ++(5, 2) node[above left] {\scriptsize 9}
+      (VideoObstacle2) ++(5, 1.5) node[] {/}
+      (VideoObstacle2) ++(5, 1.5) node[above left] {\scriptsize 9}
+      (VideoObstacle2) ++(5, 1) node[] {/}
+      (VideoObstacle2) ++(5, 1) node[above left] {\scriptsize 9}
+      (VideoObstacle2) ++(5, 0.5) node[] {/}
+      (VideoObstacle2) ++(5, 0.5) node[above left] {\scriptsize 9}
+
+      (dff0) ++(1, 0.25) -- ++(1, 0)
+      (dff1) ++(3, 0.25) node[not port,scale=0.5] (not0) {}
+      (dff1) ++(1, 0.25) -- (not0.in)
+      (Bird) ++(0, 0.5) -- (not0.out)
+
+      (ClockDivider) ++(3, 1) -- ++(1, 0) circle (0.03125) -- ++(0, 4.5) -- ++(2, 0) node[above left] {\scriptsize dividedClocks[16]}
+      (ClockDivider) ++(3, 1) ++(1, 0) -- ++(0, -8.5) -- ++(2, 0) node[above left] {\scriptsize dividedClocks[17]}
+      (ClockDivider) ++(4, 1.5) circle (0.03125) -- ++(2, 0) node[above left] {\scriptsize dividedClocks[17]}
+      (ClockDivider) ++(4, -3) circle (0.03125) -- ++(2, 0) node[above left] {\scriptsize dividedClocks[17]}
+      (ClockDivider) ++(4, 5.5) circle (0.03125) -- ++(0, 7.5) -- ++(24, 0) -- ++(0, -17.5) -- ++(1.5, 0) node[above left] {\scriptsize dividedClocks[17]}
+      (ClockDivider) ++(4, 3) circle (0.03125) -- ++(-3.5, 0) -- ++(0, 1.25) node[below left] {\scriptsize dividedClocks[16]}
+      (ClockDivider) ++(2.5, 3) circle (0.03125) -- ++(0, 1.25) node[below left] {\scriptsize dividedClocks[16]}
+
+      (GameStateTracker) ++(3, 1) -- ++(0.25, 0) -- ++(0, -1.75) -- ++(-11.5, 0) -- ++(0, 1.25) -- ++(0.25, 0)
+      (GameStateTracker) ++(-0.5, -0.75) circle (0.03125) -- ++(0, -3.5) -- ++(0.5, 0)
+
+      (VideoGame) ++(4, 7.25) -- ++(4, 0)
+      (VideoGame) ++(4, 6.75) -- ++(4, 0)
+      (VideoGame) ++(4, 6.25) -- ++(4, 0)
+      (VideoGame) ++(5, 7.25) node[] {/}
+      (VideoGame) ++(5, 7.25) node[above left] {\scriptsize 8}
+      (VideoGame) ++(5, 6.75) node[] {/}
+      (VideoGame) ++(5, 6.75) node[above left] {\scriptsize 8}
+      (VideoGame) ++(5, 6.25) node[] {/}
+      (VideoGame) ++(5, 6.25) node[above left] {\scriptsize 8}
+
+      (CollisionDetector) ++(4, 4.25) -- ++(1, 0) -- ++(0, 10.75) -- ++(3, 0)
+
+      (ScoreCounter) ++(3, 1.75) -- ++(2, 0) circle (0.03125) -- ++(0, 4.75) -- ++(1.5, 0)
+      (ScoreCounter) ++(5, 1.75) -- ++(0, -4.25) -- ++(1.5, 0)
+      (ScoreCounter) ++(5, 3.5) circle (0.03125) -- ++(1.5, 0)
+      (ScoreCounter) ++(5, 0.5) circle (0.03125) -- ++(1.5, 0)
+      (ScoreCounter) ++(4, 1.75) node[] {/}
+      (ScoreCounter) ++(4, 1.75) node[above left] {\scriptsize 10}
+
+      (Obstacle0) ++(0, 0.5) -- ++(-0.5, 0) node[left] {\scriptsize 9'd380}
+      (Obstacle0) ++(0, 1) -- ++(-0.5, 0) node[left] {\scriptsize 10'd240}
+      (Obstacle0) ++(0, 1.5) -- ++(-0.5, 0) node[left] {\scriptsize 9'd90}
+
+      (Obstacle1) ++(0, 0.5) -- ++(-0.5, 0) node[left] {\scriptsize 9'd200}
+      (Obstacle1) ++(0, 1) -- ++(-0.5, 0) node[left] {\scriptsize 10'd480}
+      (Obstacle1) ++(0, 1.5) -- ++(-0.5, 0) node[left] {\scriptsize 9'd180}
+
+      (Obstacle2) ++(0, 0.5) -- ++(-0.5, 0) node[left] {\scriptsize 9'd210}
+      (Obstacle2) ++(0, 1) -- ++(-0.5, 0) node[left] {\scriptsize 10'd720}
+      (Obstacle2) ++(0, 1.5) -- ++(-0.5, 0) node[left] {\scriptsize 9'd270}
+
+      (VideoDriver) ++(3, 5) -- ++(0.5, 0) -- ++(0, 6) -- ++(-12, 0) -- ++(0, -1.75) -- ++(0.5, 0)
+      (VideoDriver) ++(3, 4.5) -- ++(1, 0) -- ++(0, 7) -- ++(-13, 0) -- ++(0, -2.75) -- ++(1, 0)
+      (VideoDriver) ++(2.5, 11) node[] {/}
+      (VideoDriver) ++(2.5, 11) node[above left] {\scriptsize 10}
+      (VideoDriver) ++(2.5, 11.5) node[] {/}
+      (VideoDriver) ++(2.5, 11.5) node[above left] {\scriptsize 9}
+
+      (VideoObstacle0) ++(4, 3) circle (0.03125) -- ++(0, -20) -- ++(12, 0) -- ++(0, 13) -- ++(1.5, 0)
+      (VideoObstacle1) ++(4.25, 3) circle (0.03125) -- ++(0, -16) -- ++(12, 0) -- ++(0, 13) -- ++(1.25, 0)
+      (VideoObstacle2) ++(4.5, 3) circle (0.03125) -- ++(0, -12) -- ++(12, 0) -- ++(0, 13) -- ++(1, 0)
+
+      (clock50) ++(1, 0) -- ++(1.5, 0) -- ++(0, -4.25) -- ++(1.5, 0)
+      (clock50) ++(2.5, 0) circle (0.03125) -- ++(0, 7) -- ++(29, 0) -- ++(0, -7) -- ++(2, 0)
+      (clock50) ++(31.5, 0) circle (0.03125) -- ++(0, -6.75) -- ++(2, 0)
+
+      (key) ++(1, 0) -- ++(3, 0) node[above left] {\scriptsize KEY[0]}
+
+      (sw) ++(1, 0) -- ++(6.5, 0) circle (0.03125)
+      (sw) ++(7.5, 0) -- ++(0, -14.5) -- ++(2.5, 0) node[above left] {\scriptsize SW[9]}
+      (sw) ++(7.5, -10) circle (0.03125) -- ++(2.5, 0) node[above left] {\scriptsize SW[9]}
+      (sw) ++(7.5, -6) circle (0.03125) -- ++(1, 0) -- ++(0, 0.5) -- ++(1.5, 0) node[above left] {\scriptsize SW[9]}
+      (sw) ++(7.5, -1.5) circle (0.03125) -- ++(2.5, 0) node[above left] {\scriptsize SW[9]}
+      (sw) ++(7.5, 0) -- ++(0, 7) -- ++(25, 0) -- ++(0, -18.5) -- ++(1, 0) node[above left] {\scriptsize SW[9]}
+      (sw) ++(7.5, 0) ++(25, -8.25) circle (0.03125) -- ++(1, 0) node[above left] {\scriptsize SW[9]}
+      (sw) ++(7.5, 0) ++(25, -1.5) circle (0.03125) -- ++(1, 0) node[above left] {\scriptsize SW[8]}
+      (sw) ++(3, 0) circle (0.03125) -- ++(0, -5.75) -- ++(1, 0) node[above left] {\scriptsize SW[8]}
+
+      (odd0) ++(-0.5, 0.5) node[] {/}
+      (odd0) ++(-0.5, 0.5) node[above left] {\scriptsize 4}
+      (odd0) ++(2, 0.5) -- ++(3, 0) node[right] {\small HEX0}
+      (odd0) ++(4, 0.5) node[] {/}
+      (odd0) ++(4, 0.5) node[above left] {\scriptsize 7}
+
+      (odd1) ++(-0.5, 0.5) node[] {/}
+      (odd1) ++(-0.5, 0.5) node[above left] {\scriptsize 4}
+      (odd1) ++(2, 0.5) -- ++(3, 0) node[right] {\small HEX1}
+      (odd1) ++(4, 0.5) node[] {/}
+      (odd1) ++(4, 0.5) node[above left] {\scriptsize 7}
+
+      (odd2) ++(-0.5, 0.5) node[] {/}
+      (odd2) ++(-0.5, 0.5) node[above left] {\scriptsize 4}
+      (odd2) ++(2, 0.5) -- ++(3, 0) node[right] {\small HEX2}
+      (odd2) ++(4, 0.5) node[] {/}
+      (odd2) ++(4, 0.5) node[above left] {\scriptsize 7}
+
+      (odd3) ++(-0.5, 0.5) node[] {/}
+      (odd3) ++(-0.5, 0.5) node[above left] {\scriptsize 4}
+      (odd3) ++(2, 0.5) -- ++(3, 0) node[right] {\small HEX3}
+      (odd3) ++(4, 0.5) node[] {/}
+      (odd3) ++(4, 0.5) node[above left] {\scriptsize 7}
+
+      (VideoDriver) ++(3, 0.5) -- ++(8.5, 0) node[right] {\small VGA\_VS}
+      (VideoDriver) ++(3, 1) -- ++(8.5, 0) node[right] {\small VGA\_SYNC\_N}
+      (VideoDriver) ++(3, 1.5) -- ++(8.5, 0) node[right] {\small VGA\_HS}
+      (VideoDriver) ++(3, 2) -- ++(8.5, 0) node[right] {\small VGA\_CLK}
+      (VideoDriver) ++(3, 2.5) -- ++(8.5, 0) node[right] {\small VGA\_BLANK\_N}
+      (VideoDriver) ++(3, 3) -- ++(8.5, 0) node[right] {\small VGA\_B}
+      (VideoDriver) ++(4, 3) node[] {/}
+      (VideoDriver) ++(4, 3) node[above left] {\scriptsize 8}
+      (VideoDriver) ++(3, 3.5) -- ++(8.5, 0) node[right] {\small VGA\_G}
+      (VideoDriver) ++(4, 3.5) node[] {/}
+      (VideoDriver) ++(4, 3.5) node[above left] {\scriptsize 8}
+      (VideoDriver) ++(3, 4) -- ++(8.5, 0) node[right] {\small VGA\_R}
+      (VideoDriver) ++(4, 4) node[] {/}
+      (VideoDriver) ++(4, 4) node[above left] {\scriptsize 8};
+    \end{circuitikz}
+  \end{figure}
+\end{landscape}
+\end{document}
